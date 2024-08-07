@@ -1,0 +1,45 @@
+create database store;
+
+create table countries(id int primary key , name varchar(20)  unique not null , continent_name varchar(20));
+
+create table users (id int primary key, email varchar(20) unique ,gender char(1) ,check (gender or ('m','f') ));
+
+create table orders (id int primary key , status varchar(6) check ( status or ('a','b') ));
+
+create table  order_products (order_id int, product_id int, quantity int default 0, foreign key (order_id )references orders(id),
+         foreign key (product_id)references products(id), primary key (order_id, product_id));
+
+create table products (  id int primary key ,  name varchar(10)not null , price int DEFAULT 0,
+   status varchar(10) check  (status or ('valid', 'expired')));
+
+alter table users
+
+add constraint gender CHECK (gender or ('m', 'f'));
+
+alter table orders
+
+add constraint status CHECK (status IN ('start', 'finish'));
+
+alter table order_products
+
+alter column quantity SET DEFAULT 0;
+
+INSERT INTO countries (id, name, continent_name) VALUES (1, 'Saudi Arabia', 'Asia');
+
+INSERT INTO users (id, email, gender) VALUES (1, 'ahmed.almroba@gmail.com', 'm');
+
+insert into orders (id, status) values (2, 'a');
+
+insert into products (id, name, price, status) values (3, 'Product', 20, 'v');
+
+insert into order_products (order_id, product_id, quantity) values (4, 9, 5);
+
+update countries SET continent_name = 'Saudi a' WHERE name = 'Riyadh';
+
+delete from products WHERE id = 1;
+
+select  * from conuntrise;
+select * from user;
+select * from orders ;
+select * from order_products ;
+select * from products;
