@@ -2,7 +2,8 @@ create database store;
 
 create table countries(id int primary key , name varchar(20)  unique not null , continent_name varchar(20));
 
-create table users (id int primary key, email varchar(20) unique ,gender char(1) ,check (gender or ('m','f') ));
+create table users (id int primary key, email varchar(20) unique ,gender char(1) ,check (gender IN ('m','f') )
+            , countries_code int , foreign key (countries_code) REFERENCES conuntrise(id)   );
 
 create table orders (id int primary key , status varchar(6) check ( status or ('a','b') ));
 
